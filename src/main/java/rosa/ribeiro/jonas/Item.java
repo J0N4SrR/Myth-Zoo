@@ -1,4 +1,4 @@
-package rosa.ribeiro.jonas.Itens;
+package rosa.ribeiro.jonas;
 
 public class Item {
     protected String name;

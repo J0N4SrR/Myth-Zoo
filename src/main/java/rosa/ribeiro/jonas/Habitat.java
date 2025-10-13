@@ -1,4 +1,4 @@
-package rosa.ribeiro.jonas.habitat;
+package rosa.ribeiro.jonas;
 
 public class Habitat {
     private String name;

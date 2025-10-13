@@ -1,7 +1,6 @@
-package rosa.ribeiro.jonas.creatures;
+package rosa.ribeiro.jonas;
 
-import rosa.ribeiro.jonas.habitat.Habitat;
-
+import java.util.Set;
 import java.util.UUID;
 
 public class Creature {
@@ -17,6 +16,11 @@ public class Creature {
     private Nature nature;
     private Status status;
     private LifeCycle lifeCycle;
+    private Set<Skill> skills;
 
+    // Progressão
+    public void gainExperience(int amount){
+
+    };
 
 }

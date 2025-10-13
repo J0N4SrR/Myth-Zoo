@@ -1,4 +1,4 @@
-package rosa.ribeiro.jonas.creatures;
+package rosa.ribeiro.jonas;
 
 public class LifeCycle {
     private int age;
