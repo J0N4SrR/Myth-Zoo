@@ -1,4 +1,6 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.core;
+
+import rosa.ribeiro.jonas.enums.MagicalType;
 
 public class Skill {
     private String name;

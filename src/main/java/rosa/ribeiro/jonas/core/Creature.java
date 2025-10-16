@@ -1,4 +1,10 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.core;
+
+import rosa.ribeiro.jonas.enums.Gender;
+import rosa.ribeiro.jonas.enums.MagicalType;
+import rosa.ribeiro.jonas.enums.Nature;
+import rosa.ribeiro.jonas.world.Food;
+import rosa.ribeiro.jonas.world.Habitat;
 
 import java.util.Set;
 import java.util.UUID;
@@ -22,5 +28,9 @@ public class Creature {
     public void gainExperience(int amount){
 
     };
+
+    public void eat(Food food){
+
+    }
 
 }

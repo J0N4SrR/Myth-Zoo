@@ -1,6 +1,6 @@
 package rosa.ribeiro.jonas.level;
 
-import rosa.ribeiro.jonas.Status;
+import rosa.ribeiro.jonas.core.Status;
 
 public class Level {
     private int level;
@@ -15,26 +15,46 @@ public class Level {
 
     }
 
-    private void levelUp(Status status){
-        while(currentExperience >= maxExperienceToLevel){
+    public void addXp(int xp, Status status) {
+        currentExperience += xp;
+
+        while (currentExperience >= maxExperienceToLevel) {
             currentExperience -= maxExperienceToLevel;
             level++;
             maxExperienceToLevel = curve.calculateXp(level);
-        status.onLevelUp();
-        };
-    }
-
-    private boolean checkLevelUp(){
-        return currentExperience >= maxExperienceToLevel;
-    }
-
-    public void addXp(int xp, Status status){
-        currentExperience += xp;
-        if(checkLevelUp()){
-            levelUp(status);
+            status.onLevelUp();
         }
-
     }
 
+    public int getLevel() {
+        return level;
+    }
 
+    public int getMaxExperienceToLevel() {
+        return maxExperienceToLevel;
+    }
+
+    public int getCurrentExperience() {
+        return currentExperience;
+    }
+
+    public LevelCurve getCurve() {
+        return curve;
+    }
+
+    public void setMaxExperienceToLevel(int maxExperienceToLevel) {
+        this.maxExperienceToLevel = maxExperienceToLevel;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setCurrentExperience(int currentExperience) {
+        this.currentExperience = currentExperience;
+    }
+
+    public void setCurve(LevelCurve curve) {
+        this.curve = curve;
+    }
 }

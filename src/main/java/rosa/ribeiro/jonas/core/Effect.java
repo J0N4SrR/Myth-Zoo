@@ -1,4 +1,6 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.core;
+
+import rosa.ribeiro.jonas.enums.EffectType;
 
 public class Effect {
     private String name;

@@ -1,5 +1,6 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.core;
 
+import rosa.ribeiro.jonas.world.Food;
 import rosa.ribeiro.jonas.level.Level;
 import rosa.ribeiro.jonas.level.LevelCurve;
 
@@ -44,10 +45,11 @@ public class Status {
         attack += 1;
         defense += 1;
         speed += 1;
-
         currentHp = maxHp;
         currentMana = maxMana;
     }
+
+
 
     //heath
     private void healHp(int amount){

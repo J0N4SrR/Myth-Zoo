@@ -1,4 +1,7 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.world;
+
+import rosa.ribeiro.jonas.enums.FoodType;
+import rosa.ribeiro.jonas.enums.MagicalType;
 
 public class Food extends Item {
     private FoodType foodType;

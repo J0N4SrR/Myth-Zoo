@@ -1,4 +1,6 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.world;
+
+import rosa.ribeiro.jonas.enums.ItemType;
 
 public class Item {
     protected String name;

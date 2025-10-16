@@ -1,4 +1,7 @@
-package rosa.ribeiro.jonas;
+package rosa.ribeiro.jonas.world;
+
+import rosa.ribeiro.jonas.enums.EnvironmentType;
+import rosa.ribeiro.jonas.enums.Weather;
 
 public class Habitat {
     private String name;
