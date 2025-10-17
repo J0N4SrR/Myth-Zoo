@@ -18,8 +18,9 @@ public class Status {
     private int attack;
     private int defense;
     private int speed;
+    private double acuracy;
 
-    public Status(LevelCurve curve, int maxHp, int maxMana, int maxHunger, int maxSanity, int attack, int defense, int speed) {
+    public Status(LevelCurve curve, int maxHp, int maxMana, int maxHunger, int maxSanity, int attack, int defense, int speed, double acuracy) {
         this.level = new Level(curve, 0, 0);
         this.alive = true;
         this.currentHp = maxHp;
@@ -33,21 +34,33 @@ public class Status {
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+        this.acuracy = acuracy;
     }
 
     private boolean isAlive(){
         if(currentHp <= 0 ) alive = false;
         return alive;
     }
-    public void onLevelUp() {
+
+    private void onLevelUp() {
         maxHp += 5;
         maxMana += 3;
         attack += 1;
         defense += 1;
         speed += 1;
+        acuracy += 0.1;
         currentHp = maxHp;
         currentMana = maxMana;
     }
+
+    public void gainExperience(int amount){
+        int levelUpdate = level.addXp(amount);
+
+        for(int i = 0; i < levelUpdate; i++){
+            onLevelUp();
+        }
+    }
+
 
 
 
@@ -89,11 +102,12 @@ public class Status {
     }
 
     public void consumeFood(Food food){
-        currentHp += food.getHealthValue();
-        currentMana += food.getEnergyValue();
-        currentHunger -= food.getNutritionalValue();
-        currentSanity += food.getSanityValue();
-
+        currentHp = Math.min((currentHp + food.getHealthValue()), maxHp);
+        currentMana = Math.min((currentMana +food.getEnergyValue()),maxMana);
+        if((currentHunger - food.getNutritionalValue()) >= 0){
+        currentHunger = Math.min((currentHunger - food.getNutritionalValue()), maxHunger);
+        } else { currentHunger = 0;}
+        currentSanity = Math.min((currentSanity + food.getSanityValue()), maxSanity);
     }
 
 

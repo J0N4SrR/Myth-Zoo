@@ -30,7 +30,7 @@ public class Creature {
     };
 
     public void eat(Food food){
-
+        status.consumeFood(food);
     }
 
 }

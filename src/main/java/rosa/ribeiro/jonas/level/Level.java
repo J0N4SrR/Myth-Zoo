@@ -15,15 +15,17 @@ public class Level {
 
     }
 
-    public void addXp(int xp, Status status) {
+    public int addXp(int xp) {
+        int cont = 0;
         currentExperience += xp;
 
         while (currentExperience >= maxExperienceToLevel) {
             currentExperience -= maxExperienceToLevel;
             level++;
             maxExperienceToLevel = curve.calculateXp(level);
-            status.onLevelUp();
+            cont++;
         }
+        return cont;
     }
 
     public int getLevel() {
