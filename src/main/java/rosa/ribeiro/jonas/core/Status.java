@@ -7,67 +7,44 @@ import rosa.ribeiro.jonas.level.LevelCurve;
 public class Status {
     private Level level;
     private boolean alive;
-    private int currentHp;
-    private int currentMana;
-    private int currentHunger;
-    private int currentSanity;
-    private int maxHp;
-    private int maxMana;
-    private int maxHunger;
-    private int maxSanity;
-    private int attack;
-    private int defense;
-    private int speed;
-    private double acuracy;
+    private VitalsManager vitalsManager;
+    private CombatManager combatManager;
 
-    public Status(LevelCurve curve, int maxHp, int maxMana, int maxHunger, int maxSanity, int attack, int defense, int speed, double acuracy) {
+    public Status(LevelCurve curve, VitalsManager vitalsManager, CombatManager combatManager) {
         this.level = new Level(curve, 0, 0);
         this.alive = true;
-        this.currentHp = maxHp;
-        this.currentMana = maxMana;
-        this.currentHunger = 0;
-        this.currentSanity = maxSanity;
-        this.maxHp = maxHp;
-        this.maxMana = maxMana;
-        this.maxHunger = maxHunger;
-        this.maxSanity = maxSanity;
-        this.attack = attack;
-        this.defense = defense;
-        this.speed = speed;
-        this.acuracy = acuracy;
+        this.vitalsManager = vitalsManager;
+        this.combatManager = combatManager;
+
     }
 
     private boolean isAlive(){
-        if(currentHp <= 0 ) alive = false;
+        if(vitalsManager.getCurrentHp() <= 0 ) alive = false;
         return alive;
     }
 
     private void onLevelUp() {
-        maxHp += 5;
-        maxMana += 3;
-        attack += 1;
-        defense += 1;
-        speed += 1;
-        acuracy += 0.1;
-        currentHp = maxHp;
-        currentMana = maxMana;
+        vitalsManager.setMaxHp(vitalsManager.getMaxHp() + 5);
+        vitalsManager.setMaxMana(vitalsManager.getMaxMana() + 3);
+        vitalsManager.setCurrentHp(vitalsManager.getMaxHp());
+        vitalsManager.setCurrentMana(vitalsManager.getMaxMana());
+        combatManager.setAttack(combatManager.getAttack() + 1);
+        combatManager.setDefense(combatManager.getDefense() + 1);
+        combatManager.setSpeed(combatManager.getSpeed() + 1);
+        combatManager.setAcuracy(combatManager.getAcuracy() + 0.1);
     }
 
     public void gainExperience(int amount){
         int levelUpdate = level.addXp(amount);
-
         for(int i = 0; i < levelUpdate; i++){
             onLevelUp();
         }
     }
 
-
-
-
     //heath
     private void healHp(int amount){
         if(isAlive()){
-        currentHp += amount;
+            vitalsManager.setCurrentHp(vitalsManager.getCurrentHp() + amount);
         }
     }
     private void takeDamage(int rawAmount){
@@ -110,53 +87,4 @@ public class Status {
         currentSanity = Math.min((currentSanity + food.getSanityValue()), maxSanity);
     }
 
-
-
-
-
-
-
-
-
-    public int getCurrentHp() {
-        return currentHp;
-    }
-
-    public int getCurrentMana() {
-        return currentMana;
-    }
-
-    public int getCurrentHunger() {
-        return currentHunger;
-    }
-
-    public int getCurrentSanity() {
-        return currentSanity;
-    }
-
-    public int getMaxHp() {
-        return maxHp;
-    }
-
-    public int getMaxMana() {
-        return maxMana;
-    }
-
-    public int getMaxSanity() {
-        return maxSanity;
-    }
-
-    public int getMaxHunger() { return maxHunger;}
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
 }
